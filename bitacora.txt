@@ -1,0 +1,111 @@
+
+Bitacora para el caso 2 de Bases de datos 2,  Daniel Bejarano Alfaro (2020425953)
+
+docker-compose up -d      //para levantar el docker container y que corra en el background
+docker exec -it Mongo-Caso2 bash    //para ejecutar un ambiente interactivo con el bash del container
+mongosh    //para conectarse directamente al shell de mongo y poder ejecutar comandos de mongo
+
+COMANDOS DE MONGO:
+
+show databases;
+use caso2;
+
+// 3 ejemplos de registros insertados, de una vez Mongo crea la colección si no ha sido creado anteriormente
+db.pedidosya.insertOne({ 
+    categoriaDeComida: "Hamburguesas", 
+    categoriaDeComidaImagenURL : "https://www.burgerimage.com/", 
+    restaurantes :[
+        {
+            name : "McDonalds",
+            imagenURL : "https://www.mcdonalds.com/logo",
+            rating : 4.5,
+            envioPrecio : 0,
+            tiempoEnvio : 15,
+            ubicacion : [{
+                latituded: 9.88987282920,
+                longitude: -83.298121091
+            }],
+            filtros : ["Envio gratis", "Comida Rapida", "Economico"]
+        },
+        {
+            name : "Burger King",
+            imagenURL : "https://www.burgerking.com/logo",
+            rating : 4.8,
+            envioPrecio : 200,
+            tiempoEnvio : 15,
+            ubicacion : [{
+                latituded: 10.88987282920,
+                longitude: -83.298121091
+            }],
+            filtros : ["Comida Rapida", "Economico"]
+        }
+    ] 
+});
+
+
+db.pedidosya.insertOne({ 
+    categoriaDeComida: "Postres", 
+    categoriaDeComidaImagenURL : "https://www.postreimagen.com/", 
+    restaurantes :[
+        {
+            name : "Pops",
+            imagenURL : "https://www.pops.com/logo",
+            rating : 5.0,
+            envioPrecio : 500,
+            tiempoEnvio : 20,
+            ubicacion : [{
+                latituded: 11.88987282920,
+                longitude: -84.298121091
+            }],
+            filtros : ["Helados", "Dulce"]
+        }
+    ] 
+});
+
+db.pedidosya.insertOne({ 
+    categoriaDeComida: "Comida Mexicana", 
+    categoriaDeComidaImagenURL : "https://www.comidamexicanaimagen.com/", 
+    restaurantes :[
+        {
+            name : "Chipotle",
+            imagenURL : "https://www.chipotle.com/logo",
+            rating : 3.7,
+            envioPrecio : 600,
+            tiempoEnvio : 30,
+            ubicacion : [{
+                latituded: 12.88987282920,
+                longitude: -74.298121091
+            }],
+            filtros : ["Saludable", "Arroz"]
+        }
+    ] 
+});
+
+db.pedidosya.insertOne({ 
+    categoriaDeComida: "Pizza", 
+    categoriaDeComidaImagenURL : "https://www.pizzaimagen.com/", 
+    restaurantes :[
+        {
+            name : "Chipotle",
+            imagenURL : "https://www.pizzahut.com/logo",
+            rating : 4.9,
+            envioPrecio : 0,
+            tiempoEnvio : 40,
+            ubicacion : [{
+                latituded: 13.88987282920,
+                longitude: -74.298121091
+            }],
+            filtros : ["Italiano", "Vegano"]
+        }
+    ] 
+});
+
+
+// QUERIES
+
+db.pedidosya.find().pretty()   //query que retorna todos los elementos de la colección
+
+db.pedidosya.find({ "categoriaDeComida" : { $in : ["Postres", "Sushi"] } } , {"restaurantes" : 1});   // Query que retorna los restaurantes que tienen que ver con postres o sushi
+
+db.pedidosya.find({"restaurantes.envioPrecio" : 0}).count();  // Query que retorna la cantidad de restaurantes con envio gratis
+
