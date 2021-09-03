@@ -86,7 +86,7 @@ db.pedidosya.insertOne({
     categoriaDeComidaImagenURL : "https://www.pizzaimagen.com/", 
     restaurantes :[
         {
-            name : "Chipotle",
+            name : "Pizza Hut",
             imagenURL : "https://www.pizzahut.com/logo",
             rating : 4.9,
             envioPrecio : 0,
