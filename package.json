@@ -1,0 +1,16 @@
+{
+  "name": "caso2bases",
+  "version": "1.0.0",
+  "description": "Case 2 para Bases de Datos 2 , Daniel Bejarano",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node index.js",
+    "build" : "tsc -p"
+  },
+  "author": "Daniel Bejarano",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.0.2"
+  }
+}
